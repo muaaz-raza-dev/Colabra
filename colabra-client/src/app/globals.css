@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 60 10% 85%; /* #FFE5CF */
+    --background:210 17% 98%; /* #FFFFFF */
     --foreground: 240 3% 20%; /* #3C3D37 */
     --card: 0 0% 100%;
     --card-foreground: 240 3% 20%; /* #3C3D37 */
@@ -16,7 +16,7 @@
     --secondary-foreground: 240 3% 20%; /* #3C3D37 */
     --muted: 240 6% 95%; /* Similar to secondary */
     --muted-foreground: 240 4% 50%; /* Darker muted variant */
-    --accent: 0 84% 60%; /* #FF6600 */
+    --accent: 24 100% 50%; /* #FF6600 */
     --accent-foreground: 240 3% 20%; /* #3C3D37 */
     --destructive: 0 84% 60%; /* #FF6600 */
     --destructive-foreground: 0 0% 98%;
@@ -67,3 +67,96 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('/public/fonts/SegoeUI-BoldItalic.eot');
+  src: local('Segoe UI Bold Italic'), local('SegoeUI-BoldItalic'),
+      url('/public/fonts/SegoeUI-BoldItalic.eot?#iefix') format('embedded-opentype'),
+      url('/public/fonts/SegoeUI-BoldItalic.woff2') format('woff2'),
+      url('/public/fonts/SegoeUI-BoldItalic.woff') format('woff'),
+      url('/public/fonts/SegoeUI-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('/public/fonts/SegoeUI.eot');
+  src: local('Segoe UI'), local('SegoeUI'),
+      url('/public/fonts/SegoeUI.eot?#iefix') format('embedded-opentype'),
+      url('/public/fonts/SegoeUI.woff2') format('woff2'),
+      url('/public/fonts/SegoeUI.woff') format('woff'),
+      url('/public/fonts/SegoeUI.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('/public/fonts/SegoeUI-SemiBold.eot');
+  src: local('Segoe UI Semibold'), local('SegoeUI-SemiBold'),
+      url('/public/fonts/SegoeUI-SemiBold.eot?#iefix') format('embedded-opentype'),
+      url('/public/fonts/SegoeUI-SemiBold.woff2') format('woff2'),
+      url('/public/fonts/SegoeUI-SemiBold.woff') format('woff'),
+      url('/public/fonts/SegoeUI-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('/public/fonts/SegoeUI-Light.eot');
+  src: local('Segoe UI Light'), local('SegoeUI-Light'),
+      url('/public/fonts/SegoeUI-Light.eot?#iefix') format('embedded-opentype'),
+      url('/public/fonts/SegoeUI-Light.woff2') format('woff2'),
+      url('/public/fonts/SegoeUI-Light.woff') format('woff'),
+      url('/public/fonts/SegoeUI-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('/public/fonts/SegoeUI-Bold.eot');
+  src: local('Segoe UI Bold'), local('SegoeUI-Bold'),
+      url('/public/fonts/SegoeUI-Bold.eot?#iefix') format('embedded-opentype'),
+      url('/public/fonts/SegoeUI-Bold.woff2') format('woff2'),
+      url('/public/fonts/SegoeUI-Bold.woff') format('woff'),
+      url('/public/fonts/SegoeUI-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('/public/fonts/SegoeUI-Italic.eot');
+  src: local('Segoe UI Italic'), local('SegoeUI-Italic'),
+      url('/public/fonts/SegoeUI-Italic.eot?#iefix') format('embedded-opentype'),
+      url('/public/fonts/SegoeUI-Italic.woff2') format('woff2'),
+      url('/public/fonts/SegoeUI-Italic.woff') format('woff'),
+      url('/public/fonts/SegoeUI-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+
+.authBg{
+background: rgb(255,102,0);
+border-radius:100% 20% 10% 10% / 74% 31% 0% 0% ;
+background: linear-gradient(40deg, rgba(255,102,0,1) 0%, rgba(85,124,86,1) 96%), url('/authbg.png') center;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primaryShadow{
+  box-shadow: 19px 39px 31px 0px rgba(0,0,0,0.1);}

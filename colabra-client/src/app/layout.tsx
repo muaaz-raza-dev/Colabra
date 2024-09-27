@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Roboto } from 'next/font/google'
 import RecoilProvider from "@/components/providers/recoil-provider";
 import Navbar from "@/components/global/navbar";
+import  { Toaster } from 'react-hot-toast';
 
-const roboto = Roboto({
-  weight: ['400', '700'],
-  style: 'normal', 
-  variable:"--font-regular",
-  subsets: ['latin'],
-  display: 'swap',
-})
+
 
 
 export const metadata: Metadata = {
   title: "Colabra",
-
 };
 
 export default function RootLayout({
@@ -25,9 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} antialiased`}>
+      <head>
+        <link rel="shortcut icon" href="/logo.png" type="image/x-icon" />
+      </head>
+      <body className={`antialiased`}>
+      <Toaster/>
         <RecoilProvider>
-        <Navbar/>
+        {/* <Navbar/> */}
         {children}
         </RecoilProvider>
       </body>

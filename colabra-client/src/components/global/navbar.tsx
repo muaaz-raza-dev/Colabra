@@ -9,13 +9,13 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="bg-white shadow-lg z-[100]">
+    <nav className=" shadow-lg z-[100]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
               <img className="h-12 " src="/logo.png" alt="Logo" />
-              <span className=" text-xl font-bold text-gray-800">Collabra</span>
+              <span className=" text-xl font-bold text-gray-800 ">Colabra</span>
             </Link>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link href="/features" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Features</Link>
