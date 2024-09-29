@@ -32,9 +32,19 @@ const userSchema = new mongoose.Schema({
     },
     password: {
       type: String,  // Store hashed passwords for local authentication
-      select: false,  // Do not return passwordHash when fetching user by default
     },
   },{timestamps:true});
 
+  export interface IUser {
+    name: string;
+    email: string;
+    email_verified: boolean;
+    picture: string;
+    provider: 'local' | 'google' | 'hybrid';
+    user_provider_id?: string;
+    password?: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
 
 export const User = mongoose.model('User', userSchema);

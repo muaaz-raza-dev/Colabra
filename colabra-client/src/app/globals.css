@@ -141,10 +141,7 @@
   font-style: italic;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
-}
+
 
 .authBg{
 background: rgb(255,102,0);
@@ -160,3 +157,42 @@ background: linear-gradient(40deg, rgba(255,102,0,1) 0%, rgba(85,124,86,1) 96%),
 
 .primaryShadow{
   box-shadow: 19px 39px 31px 0px rgba(0,0,0,0.1);}
+
+  html {
+    font-size: 95%;
+    font-family: "Segoe UI", sans-serif;
+  }
+
+  @media screen and (max-width: 480px) {
+    html {
+      font-size: 80%;
+    }
+  }
+  
+  /* Media screen for screens with width between 481px and 768px */
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+    html {
+      font-size: 85%;
+    }
+  }
+  
+  /* Media screen for screens with width between 769px and 1024px */
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    html {
+      font-size: 90%;
+    }
+  }
+  
+  /* Media screen for screens with width between 1025px and 1280px */
+  @media screen and (min-width: 1025px) and (max-width: 1280px) {
+    html {
+      font-size: 95%;
+    }
+  }
+  
+  /* Media screen for screens with width greater than or equal to 1281px */
+  @media screen and (min-width: 1281px) {
+    html {
+      font-size: 100%;
+    }
+  }

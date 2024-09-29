@@ -39,17 +39,16 @@ export async function LocaleLoginController(req: Request, res: Response) {
     try {
         const user = await User.findOne({ email })
         if (!user||!user.password) return ErrorResponse(res, { message: "Invalid Credentials", status: 404 })
-
+            
         const isMatch = isValidPassword(password,user.password)
         if (!isMatch) return ErrorResponse(res, { message: "Invalid Credentials", status: 404 })
             
         const token = jwt.sign({ user_id: user._id }, JWT_SECRET || "", { expiresIn: "30d" })
         return res.cookie("COLABRA_SESSION", token, { expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) }).json({ token, message: "Logged in successfully!" })
 
-
     }
     catch (error) {
-        console.error('Error verifying token:', error);
+        
         return res.status(403).json({ message: 'Internal server error.' });
     }
 }

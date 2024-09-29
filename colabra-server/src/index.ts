@@ -4,11 +4,12 @@ import authRoute from "./routes/auth.route"
 import express from 'express';
 import cors from 'cors';
 import { dbConnection } from './db.js';
+import cookieParser from "cookie-parser"
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
 app.use(express.json())
+app.use(cookieParser());
 app.use(cors({ origin: ["http://localhost:3000"], credentials: true }));
 
 
