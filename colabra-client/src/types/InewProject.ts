@@ -10,9 +10,8 @@ export interface InewProject {
     title: string;
     status: "pending" | "completed" | "abandoned" | "planned";
     dates: { start_date: string; end_date: string; };
-    category: string;
+    category: string[];
     description: string;
-    tags: string[];
     features: string[];
     problemSolution: string;
     Inspirations: string[];
@@ -35,9 +34,8 @@ const defaultNewProject: InewProject = {
     title: '',
     status: 'planned',
     dates: { start_date: '', end_date: '' },
-    category: '',
+    category:[],
     description: '',
-    tags: [],
     features: [],
     problemSolution: '',
     Inspirations: [],
@@ -62,3 +60,48 @@ export const defaultNewProjectForm: InewProjectForm = {
     },
     payload: defaultNewProject
 };
+
+export const project_statuses = [
+    { 
+      value: "pending", 
+      label: "Pending", 
+      description: "The project is currently under development." 
+    },
+    { 
+      value: "completed", 
+      label: "Completed", 
+      description: "The project is live and fully completed." 
+    },
+    { 
+      value: "abandoned", 
+      label: "Abandoned", 
+      description: "The project has been stopped and is no longer being worked on." 
+    },
+    { 
+      value: "planned", 
+      label: "Planned", 
+      description: "The project is planned, but no development or work has started yet." 
+    },
+    { 
+      value: "on_hold", 
+      label: "On Hold", 
+      description: "The project is temporarily paused but may resume in the future." 
+    },
+    { 
+      value: "in_review", 
+      label: "In Review", 
+      description: "The project is finished but currently under review or testing." 
+    },
+    { 
+      value: "cancelled", 
+      label: "Cancelled", 
+      description: "The project has been permanently discontinued and will not continue." 
+    },
+    { 
+      value: "maintenance", 
+      label: "Maintenance", 
+      description: "The project is live, but ongoing maintenance or updates are being performed." 
+    }
+  ];
+  
+  
