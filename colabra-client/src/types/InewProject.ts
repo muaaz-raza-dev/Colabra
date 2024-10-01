@@ -50,9 +50,8 @@ export const defaultNewProjectForm: InewProjectForm = {
         active_count: 0,
         steps_info: [
         { label: "Overview", description: "In this step, share all the basic details about the project",completed:false}, 
-        { label: "Problem and Solution", description: "The problem being solved and any inspirations or solutions",completed:false },
+        { label: "Inspirations & links", description: "The problem being solved and any inspirations or solutions",completed:false },
         { label: "Media and links", description: "Add any visual media and links related to the project",completed:false },
-        { label: "Features and Tags", description: "List features and relevant tags",completed:false },
         {label: "Timeline",description: "Define the milestones, deadlines, and their status",completed:false},
         { label: "Default Credentials", description: "Add default credentials for demo access, if applicable." ,completed:false},
         { label: "Review & Submit",completed:false ,description:"review & publish your project"}

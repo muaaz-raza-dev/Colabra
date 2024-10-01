@@ -14,7 +14,7 @@ import React from 'react'
 import { useFormContext } from "react-hook-form"
 import toast from "react-hot-toast"
 import { FaArrowRight } from "react-icons/fa"
-import Select from 'react-select';
+// import Select from 'react-select';
 
 export default function NewProjectFormOverviewStep({label}:{label:string}) {
     const  form  = useFormContext<InewProjectForm>()
@@ -22,9 +22,8 @@ export default function NewProjectFormOverviewStep({label}:{label:string}) {
     async function handleNext(){
       const title = await form.trigger("payload.title")
       const status =await form.trigger("payload.status")
-      const category = await form.trigger("payload.category")
 
-      if(title&&status&&category){
+      if(title&&status){
         form.setValue("form_state.active_count",form.getValues("form_state.active_count")+1)
         form.setValue("form_state.steps_info",
         form.getValues("form_state.steps_info").map((e)=>{
@@ -35,7 +34,7 @@ export default function NewProjectFormOverviewStep({label}:{label:string}) {
         }))
         toast.success("you're solid")
       }
-      
+
     }
 
   return (
@@ -43,7 +42,6 @@ export default function NewProjectFormOverviewStep({label}:{label:string}) {
        <FormField
           control={form.control}
           name="payload.title"
-          shouldUnregister
           rules={{required:"Title is required",minLength:{value:2,message:"minimun 2 character is required"}}}
           render={({ field }) => (
             <FormItem className="w-full ">
@@ -63,7 +61,6 @@ export default function NewProjectFormOverviewStep({label}:{label:string}) {
           control={form.control}
           name="payload.status"
           rules={{required:"Status is required",}}
-          shouldUnregister
           render={({ field }) => (
             <FormItem className="w-full  ">
               <FormLabel className="font-semibold">Project Status *</FormLabel>
@@ -78,20 +75,21 @@ export default function NewProjectFormOverviewStep({label}:{label:string}) {
           
         )}
         />
-           <FormField
+           {/* <FormField
           control={form.control}
           name="payload.category"
           rules={{required:"Category is required"}}
-          shouldUnregister
           render={({ field }) => (
             <FormItem className="w-full ">
               <FormLabel className="font-semibold">Select categories *</FormLabel>
               <FormControl>
               <Select
-  className="!w-1/2 text-base "
-              hideSelectedOptions  options={[{value:"asdasfd",label:"afasdf"}]} 
+              className="!w-1/2 text-base "
+              hideSelectedOptions  
+              options={[{label:"asdfasdf",value:"asdasfd"}]} 
               placeholder="select category"
-              isLoading={true} menuPosition="absolute" value={field.value} onChange={field.onChange} isMulti  />
+              isLoading={true} menuPosition="absolute" value={field.value} onChange={field.onChange}
+              isMulti  />
               </FormControl>
               <FormDescription>
                 Select the categories that best describe your project.
@@ -100,7 +98,25 @@ export default function NewProjectFormOverviewStep({label}:{label:string}) {
             </FormItem>
           
         )}
-        />
+        /> */}
+    <FormField
+       control={form.control}
+       name="payload.problemSolution"
+       render={({ field }) => (
+         <FormItem className="w-full ">
+           <FormLabel className="font-semibold">What inspired you to start this project? </FormLabel>
+           <FormControl>
+             <Input placeholder="I want to connect the people of the whole world (facebook)" className="border w-1/2 font-semibold" {...field} />
+           </FormControl>
+           <i>&quot;<b className="py-2 text-sm text-black">{field.value}</b> &quot;</i>
+           <FormDescription>
+           This question helps identify the reason or inspiration behind starting the project.
+           </FormDescription>
+           <FormMessage />
+         </FormItem>
+       
+     )}
+     />
         <div className="border-t py-4 flex justify-end">
         <Button className="w-max font-semibold gap-2" type="button" onClick={handleNext}>
           Next <FaArrowRight />

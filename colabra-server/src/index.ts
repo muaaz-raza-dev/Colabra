@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import authRoute from "./routes/auth.route"
+import utilRoute from "./routes/utils.route"
 import express from 'express';
 import cors from 'cors';
 import { dbConnection } from './db.js';
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/utils", utilRoute);
 
 //1. Connecting to db
 //2. Start the server
