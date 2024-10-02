@@ -108,9 +108,9 @@ export default function NewProjectFormOverviewStep({label}:{label:string}) {
            <FormControl>
              <Input placeholder="I want to connect the people of the whole world (facebook)" className="border w-1/2 font-semibold" {...field} />
            </FormControl>
-           <i>&quot;<b className="py-2 text-sm text-black">{field.value}</b> &quot;</i>
+           {field.value&& <i>&quot;<b className="py-2 text-sm text-black">{field.value}</b> &quot;</i>}
            <FormDescription>
-           This question helps identify the reason or inspiration behind starting the project.
+             This question helps identify the reason or inspiration behind starting the project.
            </FormDescription>
            <FormMessage />
          </FormItem>

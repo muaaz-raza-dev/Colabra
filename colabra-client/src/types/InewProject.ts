@@ -16,8 +16,8 @@ export interface InewProject {
     problemSolution: string;
     Inspirations: string[];
     defaultCredentials: { [key: string]: string };
-    links: { provider: string, link: string }[];
-    Images: { format: "slider" | "singleton", images: string[] }
+    links: { label: string, link: string }[];
+    images: {urls:string[];files:File[]};
     timeline: IprojectTimeline[];
 }
 
@@ -41,7 +41,7 @@ const defaultNewProject: InewProject = {
     Inspirations: [],
     defaultCredentials: {},
     links: [],
-    Images: { format: 'singleton', images: [] },
+    images: {urls:[],files:[]},
     timeline: []
 };
 
@@ -50,8 +50,8 @@ export const defaultNewProjectForm: InewProjectForm = {
         active_count: 0,
         steps_info: [
         { label: "Overview", description: "In this step, share all the basic details about the project",completed:false}, 
-        { label: "Inspirations & links", description: "The problem being solved and any inspirations or solutions",completed:false },
-        { label: "Media and links", description: "Add any visual media and links related to the project",completed:false },
+        { label: "Project links & resources", description: "Project links ,resources & any online inspirations .",completed:false },
+        { label: "Media", description: "Add any visual media and links related to the project",completed:false },
         {label: "Timeline",description: "Define the milestones, deadlines, and their status",completed:false},
         { label: "Default Credentials", description: "Add default credentials for demo access, if applicable." ,completed:false},
         { label: "Review & Submit",completed:false ,description:"review & publish your project"}
@@ -103,4 +103,4 @@ export const project_statuses = [
     }
   ];
   
-  
+

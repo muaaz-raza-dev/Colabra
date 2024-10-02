@@ -60,7 +60,7 @@ export default function NewProjectInspirationsSelect() {
       name="payload.Inspirations"
       render={({ field }) => (
         <FormItem className="w-full ">
-          <FormLabel className="font-semibold">Online Inspirations</FormLabel>
+          <FormLabel className="font-semibold">Inspirational Platforms/Companies</FormLabel>
           <div className="flex gap-2 items-center">
             <Input
               placeholder="https://google.com"
@@ -71,7 +71,7 @@ export default function NewProjectInspirationsSelect() {
             {isLoading && <RequestLoader size="18" stroke="2" />}
             <Button onClick={handleAdd}>Add</Button>
           </div>
-          {!isLoading && 
+          {!isLoading&& input && 
           (
 
             !isValid ? 
