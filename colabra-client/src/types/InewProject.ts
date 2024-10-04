@@ -9,40 +9,40 @@ export interface InewProjectForm {
 export interface InewProject {
     title: string;
     status: "pending" | "completed" | "abandoned" | "planned";
-    dates: { start_date: string; end_date: string; };
+    dates: { start_date: Date ; end_date?:Date; };
     category: string; //Category Id
-    description: string;
-    features: string[];
+    tech:string[];
+    features: Ifeature[];
     problemSolution: string;
     Inspirations: string[];
     defaultCredentials: { [key: string]: string };
     links: { label: string, link: string }[];
     images: {urls:string[];files:File[]};
-    timeline: IprojectTimeline[];
 }
 
-export interface IprojectTimeline {
-    milestone: string;
-    start_date: string;
-    end_date: string;
-    status: "pending" | "completed"
+export interface Ifeature{
+    title: string;
+    status: featureStatuses;
 }
-
-
+export type featureStatuses = "in progress" | "completed" | "upcoming"
+export const availableFeaturesStatuses:{[key in featureStatuses]:string} = {
+  "in progress": "bg-yellow-500",  // yellow indicates something is actively being worked on
+  "completed": "bg-green-500",     // green represents completion or success
+  "upcoming": "bg-blue-500"        // blue can represent something in the future or planned
+};
 
 const defaultNewProject: InewProject = {
     title: '',
     status: 'planned',
-    dates: { start_date: '', end_date: '' },
+    dates: { start_date: new Date() ,  },
     category:"",
-    description: '',
+    tech:[],
     features: [],
     problemSolution: '',
     Inspirations: [],
     defaultCredentials: {},
     links: [],
     images: {urls:[],files:[]},
-    timeline: []
 };
 
 export const defaultNewProjectForm: InewProjectForm = {
