@@ -19,7 +19,7 @@ export default function NewProjectFormOverviewStep({label}:{label:string}) {
     const form = useFormContext<InewProjectForm>()
 
     async function handleNext(){
-      const title = await form.trigger("payload.title")
+      const title = await form.trigger("payload.name")
       const status =await form.trigger("payload.status")
       const category =await form.trigger("payload.category")
       if(title&&status&&category){
@@ -39,7 +39,7 @@ export default function NewProjectFormOverviewStep({label}:{label:string}) {
     <section className="flex flex-col gap-6 w-full  justify-center px-4">
        <FormField
           control={form.control}
-          name="payload.title"
+          name="payload.name"
           rules={{required:"Title is required",minLength:{value:2,message:"minimun 2 character is required"}}}
           render={({ field }) => (
             <FormItem className="w-full ">

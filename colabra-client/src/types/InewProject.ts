@@ -1,27 +1,27 @@
+import {Dayjs } from "dayjs"
 export interface InewProjectForm {
     form_state: {
         active_count: number;
         steps_info: { label: string; description?: string;completed:boolean }[]
     }
-    payload: InewProject
+    payload: InewProject;
 }
 
 export interface InewProject {
-    title: string;
+    name: string;
     status: "pending" | "completed" | "abandoned" | "planned";
-    dates: { start_date: Date ; end_date?:Date; };
-    category: string; //Category Id
+    dates: { label:string; date:Dayjs ; }[];
+    category: string; 
     tech:string[];
     features: Ifeature[];
     problemSolution: string;
     Inspirations: string[];
-    defaultCredentials: { [key: string]: string };
     links: { label: string, link: string }[];
     images: {urls:string[];files:File[]};
 }
 
 export interface Ifeature{
-    title: string;
+    name: string;
     status: featureStatuses;
 }
 export type featureStatuses = "in progress" | "completed" | "upcoming"
@@ -32,15 +32,14 @@ export const availableFeaturesStatuses:{[key in featureStatuses]:string} = {
 };
 
 const defaultNewProject: InewProject = {
-    title: '',
+    name: '',
     status: 'planned',
-    dates: { start_date: new Date() ,  },
+    dates: [],
     category:"",
     tech:[],
     features: [],
     problemSolution: '',
     Inspirations: [],
-    defaultCredentials: {},
     links: [],
     images: {urls:[],files:[]},
 };
@@ -98,7 +97,7 @@ export const project_statuses = [
     { 
       value: "maintenance", 
       label: "Maintenance", 
-      description: "The project is live, but ongoing maintenance or updates are being performed." 
+      description: "The project is live, but ongoing maintenance or upevents are being performed." 
     }
   ];
   
