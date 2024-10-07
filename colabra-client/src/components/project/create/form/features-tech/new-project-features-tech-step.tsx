@@ -22,9 +22,9 @@ export default function NewProjectFeaturesTechStep({label}:{label:string}) {
          name="payload.tech"
          rules={{required:"At least add 1 technology/stack"}}
          render={({ field }) => (
-           <FormItem className="w-full ">
-             <FormLabel className="font-semibold">Technology / Stack *</FormLabel>
-             <FormControl>
+      <FormItem className="w-full ">
+        <FormLabel className="font-semibold">Technology / Stack *</FormLabel>
+        <FormControl>
       <Select
       mode="tags"
       allowClear
@@ -43,7 +43,6 @@ export default function NewProjectFeaturesTechStep({label}:{label:string}) {
        />
   <NewProjectFeatureSelect/>
   <NewProjectFeatureSubmit label={label}/>
-
 </section>
     );
 }

@@ -33,9 +33,13 @@ const userSchema = new mongoose.Schema({
     password: {
       type: String,  // Store hashed passwords for local authentication
     },
+    headline:String,
+    links:{type:[{label:String,url:String}]},
+    about:String
+
   },{timestamps:true});
 
-  export interface IUser {
+  interface Iuser {
     name: string;
     email: string;
     email_verified: boolean;
@@ -43,8 +47,14 @@ const userSchema = new mongoose.Schema({
     provider: 'local' | 'google' | 'hybrid';
     user_provider_id?: string;
     password?: string;
+    headline?: string;
+    links?: Array<{
+      label: string;
+      url: string;
+    }>;
+    about?: string;
     createdAt: Date;
     updatedAt: Date;
-}
+  }
+export const User = mongoose.model<Iuser>('User', userSchema);
 
-export const User = mongoose.model('User', userSchema);

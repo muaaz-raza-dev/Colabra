@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import RequestLoader from "@/components/loader/request-loading";
 import { Button } from "@/shadcn/components/ui/button";
 import {
   Dialog,
@@ -9,17 +10,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/shadcn/components/ui/dialog";
-import { ReactNode } from "react";
-
+import React, { ReactNode,  useRef, useState } from "react";
 export default function NewProjectSubmit({
   children,
+  isLoading
 }: {
   children: ReactNode;
+  isLoading:boolean
 }) {
+const [open,setopen] = useState(false)
+const ref = useRef<HTMLButtonElement>(null)
   return (
-    <Dialog>
-      <DialogTrigger>{children}</DialogTrigger>
-      <DialogContent>
+    <>
+    <button hidden ref={ref} type="submit">
+    </button>
+    <Dialog  open={open} onOpenChange={(o)=>!isLoading&&setopen(o)}>
+      <DialogTrigger >{children}</DialogTrigger>
+      <DialogContent  >
         <DialogHeader>
           <DialogTitle>Are you ready?</DialogTitle>
           <DialogDescription className="text-gray-800 font-medium text-sm ">
@@ -42,9 +49,14 @@ export default function NewProjectSubmit({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button type="submit">Sure</Button>
+          <Button type="submit" onClick={()=>ref.current?.click()}>
+            {isLoading?  <RequestLoader size="28" stroke="3" />: 'Sure'}
+            </Button>
         </DialogFooter>
-      </DialogContent>
+
+    </DialogContent>
     </Dialog>
+    </>
   );
 }
+

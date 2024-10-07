@@ -21,13 +21,14 @@ export default function NewProjectInspirationsSelect() {
   const [isValid, setisValid] = useState(false);
   const { mutate, isLoading } = useValidateLink(setisValid);
   const debounced = useDebouncedCallback((value) => {
+    setisValid(true)
     const regValid = !!value.match(/^https?:\/\/[^\s]+$/);
     if (regValid) mutate(value);
     else setisValid(false)
   }, 500);
 
   const handleAdd = () => {
-    if (input) {
+    if (input&&isValid) {
       setinput("");
       form.setValue(
         "payload.Inspirations",
@@ -69,7 +70,7 @@ export default function NewProjectInspirationsSelect() {
               onChange={handleLinkChange}
             />
             {isLoading && <RequestLoader size="18" stroke="2" />}
-            <Button onClick={handleAdd}>Add</Button>
+            <Button type="button" onClick={handleAdd}>Add</Button>
           </div>
           {!isLoading&& input && 
           (

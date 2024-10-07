@@ -18,7 +18,7 @@ export default function NewProjectFeatureList({ data }: { data: Ifeature[] }) {
   }, [data]);
 
   function DeleteFeature(title: string) {
-    form.setValue("payload.features",form.getValues("payload.features").filter((e) => e.title != title));
+    form.setValue("payload.features",form.getValues("payload.features").filter((e) => e.name != title));
   }
 
   return (
@@ -37,20 +37,20 @@ export default function NewProjectFeatureList({ data }: { data: Ifeature[] }) {
               <b className="font-semibold capitalize">{status}</b>
             </div>
             <div className="mt-2 flex flex-col gap-2 p-2">
-              {state[status as featureStatuses]?.map(({ title }, index) => {
+              {state[status as featureStatuses]?.map(({ name }, index) => {
                 return (
                   <div
                     className=" gap-2  bg-white border rounded-md p-2 flex items-center font-semibold justify-between"
-                    key={title}
+                    key={name}
                   >
                     <div className="flex gap-2">
                       <p>{index + 1} .</p>
-                      {title}
+                      {name}
                     </div>
                     <div className="flex gap-1">
                       <button
                         className="text-destructive hover:scale-95 transition-transform"
-                        onClick={() => DeleteFeature(title)}
+                        onClick={() => DeleteFeature(name)}
                       >
                         <FaTrash />
                       </button>

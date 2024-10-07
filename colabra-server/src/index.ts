@@ -3,10 +3,13 @@ dotenv.config();
 import authRoute from "./routes/auth.route"
 import utilRoute from "./routes/utils.route"
 import categoryRoute from "./routes/category.route"
+import projectRoute from "./routes/project.route"
+import profileRoute from "./routes/profile.route"
 import express from 'express';
 import cors from 'cors';
 import { dbConnection } from './db.js';
 import cookieParser from "cookie-parser"
+import { Authenticate } from './middlewares/Authenticate';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -23,6 +26,8 @@ res.send('You are hacked');
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/utils", utilRoute);
 app.use("/api/v1/category", categoryRoute);
+app.use("/api/v1/project", Authenticate,projectRoute);
+app.use("/api/v1/profile",Authenticate, profileRoute);
 
 dbConnection().then(_=>
   app.listen(PORT, () => {

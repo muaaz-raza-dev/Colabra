@@ -20,7 +20,7 @@ export default function NewProjectDateAdder() {
       <Input placeholder='Title of the date i.e Start Date' value={state.label} onChange={({target:{value}})=>{setstate(e=>({...e,label:value}))}} />
       <DatePicker  format="dddd D-MMMM-YYYY" className="w-full sm:w-1/2 p-2 border rounded-md" placeholder="Select date" value={state.date} 
       onChange={(value)=>{setstate(e=>({...e,date:value}))}}/>
-      <Button onClick={Add}>Add</Button>
+      <Button type='button' onClick={Add}>Add</Button>
         </div>
         <p className='text-xs pt-2 text-gray-400 '>Break your project into highlights/timeline</p>
       </section>

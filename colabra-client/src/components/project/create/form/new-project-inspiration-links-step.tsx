@@ -2,7 +2,6 @@ import React from 'react'
 import { Button } from "@/shadcn/components/ui/button"
 import { InewProjectForm } from "@/types/InewProject"
 import { useFormContext } from "react-hook-form"
-import toast from "react-hot-toast"
 import { FaArrowRight } from "react-icons/fa"
 import NewProjectInspirationsSelect from './inspiration-links/new-project-inspirations-select'
 import NewProjectLinkSelect from './inspiration-links/new-project-link-select'
@@ -20,13 +19,11 @@ export default function NewProjectInspirationLinkStep({label}:{label:string}) {
         }
         return e
         }))
-        toast.success("you're solid")
       }
     
     
     return (
     <section className="flex flex-col gap-6 w-full  justify-center px-4">
-   
     <NewProjectInspirationsSelect/>
     <NewProjectLinkSelect/>
      <div className="border-t py-4 flex justify-end">

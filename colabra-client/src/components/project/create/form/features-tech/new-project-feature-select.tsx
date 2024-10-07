@@ -29,22 +29,24 @@ import toast from "react-hot-toast";
 
 export default function NewProjectFeatureSelect() {
   const [state, setstate] = useState<{
-    title: string;
+    name: string;
     status:featureStatuses;
-  }>({ title: "", status: "completed" });
+  }>({ name: "", status: "completed" });
   const form = useFormContext<InewProjectForm>();
+  
   function handleAddFeature() {
-    if (state.title && state.status) {
-      const isExist = form.getValues("payload.features").find((e)=>e.status==state.status&&e.title==state.title);
+    if (state.name && state.status) {
+      const isExist = form.getValues("payload.features").find((e)=>e.status==state.status&&e.name==state.name);
       if(isExist){
         toast.error("Feature already added");
-        setstate({ title: "", status: "completed" });
+        setstate({ name: "", status: "completed" });
         return;
       }
       form.setValue("payload.features",[...form.getValues("payload.features"),state]);
-      setstate({ title: "", status: "completed" });
+      setstate({ name: "", status: "completed" });
     }
   }
+
   return (
     <FormField
       control={form.control}
@@ -55,13 +57,15 @@ export default function NewProjectFeatureSelect() {
           <FormLabel className="font-semibold">Features *</FormLabel>
           <FormControl>
             <div className="flex justify-between w-full gap-2">
-
             <Input
             className="w-[60%] bg-white border"
-              value={state.title}
+              value={state.name}
               placeholder="AI integration in chat box"
               onChange={({ target: { value } }) =>
-                setstate((e) => ({ ...e, title: value }))
+              {
+
+                setstate((e) => ({ ...e, name: value }))
+              }
             }
             />
             <StatusSelector value={state.status} setvalue={setstate} />
@@ -88,7 +92,7 @@ function StatusSelector({
   value: string;
   setvalue: React.Dispatch<
     React.SetStateAction<{
-      title: string;
+      name: string;
       status:featureStatuses;
     }>
   >;
@@ -96,12 +100,10 @@ function StatusSelector({
   return (
     <Select
       value={value}
-      onValueChange={(status:featureStatuses) =>
-        setvalue((e) => ({ ...e, status }))
-      }
+      onValueChange={(status:featureStatuses) =>setvalue((e) => ({ ...e, status }))}
     >
       <SelectTrigger className=" w-[30%] bg-white ">
-        <SelectValue placeholder="Status" />
+      <SelectValue placeholder="Status" />
       </SelectTrigger>
       <SelectContent>
         {Object.keys(availableFeaturesStatuses).map((status) => {
@@ -119,6 +121,7 @@ function StatusSelector({
             </SelectItem>
           );
         })}
+
       </SelectContent>
     </Select>
   );

@@ -23,7 +23,7 @@ export default function NewProjectFeatureSubmit({label}:{label:string}) {
   }
   return (
     <div className='flex justify-end border-t py-2'>
-         <Button onClick={JumpToNextStep}  className='gap-2'>
+         <Button type='button' onClick={JumpToNextStep}  className='gap-2'>
       <p>Next</p>
       <FaArrowRight />
   </Button>

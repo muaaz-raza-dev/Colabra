@@ -28,7 +28,7 @@ export default function NewProjectCategorySelect() {
       className='w-1/2 block'
       placeholder="Select a category"
       filterOption={false}  
-      value={field.value}
+      value={field.value||null}
       showSearch
       onSearch={(value:string)=>debounced(value)}
       onSelect={field.onChange}

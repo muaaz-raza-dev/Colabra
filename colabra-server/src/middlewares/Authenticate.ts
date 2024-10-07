@@ -14,10 +14,11 @@ export async function Authenticate(req:Request,res:Response,next:NextFunction){
         if (!decodedToken || !decodedToken.user_id) {
             return ErrorResponse(res, { message: "Invalid Credentials", status: 401 });
         }
-        const user = await User.findById(decodedToken.user_id).select('-password');
+        const user = await User.findById(decodedToken.user_id).select('name username email email_verified');
         if (!user) {
             return ErrorResponse(res, { message: "Invalid Credentials", status: 401 });
         }
+
         req.userid = decodedToken.user_id
         req.details = user
         next()
