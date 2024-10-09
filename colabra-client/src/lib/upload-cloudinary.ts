@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const Cloud_Name= process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-async function UploadImageCloudinary(images:File[]) {
+async function UploadImageCloudinary(images:File[]):Promise<string[]|null> {
     if(!images.length) return null
     try{
         const { data } = await axios.post('/api/cloudinary-sign');

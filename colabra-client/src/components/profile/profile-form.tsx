@@ -2,14 +2,14 @@
 import { Input } from "@/shadcn/components/ui/input"
 import { Button } from "@/shadcn/components/ui/button"
 import { Label } from "@/shadcn/components/ui/label"
-import { Avatar, AvatarFallback, AvatarImage } from "@/shadcn/components/ui/avatar"
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form"
 import { IuserProfile } from "@/types/IuserProfile"
 import GetProfileInfoApi from "@/api/profile/profile-info.api"
 import { Textarea } from "@/shadcn/components/ui/textarea";
 import ProfileLinkField from "./profile-link-field";
 import useUpdateProfileInfo from "@/hooks/profile/useUpdateProfileInfo";
-import RequestLoader from "../loader/request-loading";
+import ProfilePhoto from "./profile-photo";
+import ProfileFormSubmit from "./profile-form-submit";
 export default function ProfileForm() {
   const methods = useForm<IuserProfile>({defaultValues:async()=>(await GetProfileInfoApi()).payload})
   const {mutate,isLoading} = useUpdateProfileInfo(methods.reset)
@@ -51,30 +51,10 @@ export default function ProfileForm() {
                {...methods.register("about")}
               />
             </div>
-            <div className="flex items-center space-x-4">
-              <Avatar className="w-24 h-24">
-                <AvatarImage src={methods.getValues("picture")||"/logo.png"} alt="Profile picture" />
-                <AvatarFallback>MR</AvatarFallback>
-              </Avatar>
-              <div>
-                <Button type="button" >
-                  Upload new avatar
-                </Button>
-                <input
-                  id="avatar-upload"
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                />
-                <p className="text-sm text-gray-500 mt-2">Recommended size: 400x400px</p>
-              </div>
-            </div>
+            <ProfilePhoto />
             <ProfileLinkField/>
     <section className="flex w-full justify-end">
-        <Button disabled={isLoading} type="submit">
-            {isLoading?<RequestLoader size="22"  /> : "Update"
-            }
-             </Button>
+      <ProfileFormSubmit isLoading={isLoading}/>
     </section>
           </form>
           </FormProvider>
