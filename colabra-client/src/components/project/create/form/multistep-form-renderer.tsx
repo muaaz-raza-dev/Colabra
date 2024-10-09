@@ -9,7 +9,7 @@ import NewProjectReviewDatesStep from './dates/new-project-dates-step'
 export default function MultistepFormRenderer({isLoading}:{isLoading:boolean}) {
     const {watch} =useFormContext<InewProjectForm>()
     const stepedForm: { [key: string]: ReactNode } = useMemo(() => ({
-      "0":<NewProjectFormOverviewStep label="Overview" />,
+      "0":<NewProjectFormOverviewStep  />,
       "1":<NewProjectInspirationLinkStep label='Project links & resources'/>,
       "2":<NewProjectMediaStep label="Media" />,
       "3":<NewProjectFeaturesTechStep label='Features & Technologies'/>,

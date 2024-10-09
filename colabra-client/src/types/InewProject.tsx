@@ -1,46 +1,37 @@
-import {Dayjs } from "dayjs"
+import { ReactNode } from "react";
+import { FaCheck, FaImages, FaRocket, FaTimesCircle, FaUsers } from "react-icons/fa";
+
 export interface InewProjectForm {
     form_state: {
         active_count: number;
-        steps_info: { label: string; description?: string;completed:boolean }[]
+        steps_info: { label: string; description?: string; icon?:ReactNode }[]
     }
     payload: InewProject;
 }
 
 export interface InewProject {
     name: string;
-    status: "pending" | "completed" | "abandoned" | "planned";
-    dates: { label:string; date:Dayjs ; }[];
-    category: string; 
-    tech:string[];
-    features: Ifeature[];
-    problemSolution: string;
-    Inspirations: string[];
+    project_link:string;
+    tags:string[];
+    headline:string;
+    description:string;
+    collaborators:{userid:string,user_details:{name:string;email:string;picture:string},role:string;description:string}[]
+    // timeline:{}
     links: { label: string, link: string }[];
     images: {urls:string[];files:File[]};
+
 }
 
-export interface Ifeature{
-    name: string;
-    status: featureStatuses;
-}
-export type featureStatuses = "in progress" | "completed" | "upcoming"
-export const availableFeaturesStatuses:{[key in featureStatuses]:string} = {
-  "in progress": "bg-yellow-500",  // yellow indicates something is actively being worked on
-  "completed": "bg-green-500",     // green represents completion or success
-  "upcoming": "bg-blue-500"        // blue can represent something in the future or planned
-};
+
 
 const defaultNewProject: InewProject = {
     name: '',
-    status: 'planned',
-    dates: [],
-    category:"",
-    tech:[],
-    features: [],
-    problemSolution: '',
-    Inspirations: [],
-    links: [],
+    headline:"",
+    description:"",
+    links:[],
+    collaborators:[],
+    project_link:"",
+    tags:[],
     images: {urls:[],files:[]},
 };
 
@@ -48,11 +39,11 @@ export const defaultNewProjectForm: InewProjectForm = {
     form_state: {
         active_count: 0,
         steps_info: [
-        { label: "Overview", description: "In this step, share all the basic details about the project",completed:false}, 
-        { label: "Project links & resources", description: "Project links ,resources & any online inspirations .",completed:false },
-        { label: "Media", description: "Add any visual media and links related to the project",completed:false },
-        {label: "Features & Technologies",description: "Define the unique features ,and technologies you use in development",completed:false},
-        { label: "Review & Submit",completed:false ,description:"review & publish your project"}
+        { label: "Main Info", description: "In this step, share all the basic details about the project", icon:<FaRocket className="text-orange-500"/>}, 
+        { label: "Images and media", description: "Project links ,resources & any online inspirations .",icon:<FaImages className="text-blue-500"/> },
+        { label: "Collaborators", description: "Add any visual media and links related to the project", icon:<FaUsers className="text-violet-600" />},
+        {label: "Timeline / Status",description: "Define the unique features ,and technologies you use in development",icon:<FaTimesCircle className="text-teal-800"/>},
+        { label: "Review & Submit", description:"review & publish your project",icon:<FaCheck className="text-green-700"/>}
         ]
     },
     payload: defaultNewProject
@@ -102,3 +93,4 @@ export const project_statuses = [
   ];
   
 
+ 

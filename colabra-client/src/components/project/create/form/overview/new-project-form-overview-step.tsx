@@ -1,4 +1,3 @@
-import CustomSelect from "@/components/global/custom-select"
 import { Button } from "@/shadcn/components/ui/button"
 import {
     FormControl,
@@ -9,43 +8,48 @@ import {
     FormMessage,
   } from "@/shadcn/components/ui/form"
 import { Input } from "@/shadcn/components/ui/input"
-import { InewProjectForm, project_statuses } from "@/types/InewProject"
+import { InewProjectForm } from "@/types/InewProject"
 import React from 'react'
 import { useFormContext } from "react-hook-form"
 import { FaArrowRight } from "react-icons/fa"
 import NewProjectCategorySelect from "./new-project-category-select"
 
-export default function NewProjectFormOverviewStep({label}:{label:string}) {
+export default function NewProjectFormOverviewStep() {
     const form = useFormContext<InewProjectForm>()
 
     async function handleNext(){
       const title = await form.trigger("payload.name")
-      const status =await form.trigger("payload.status")
-      const category =await form.trigger("payload.category")
-      if(title&&status&&category){
+      // const status =await form.trigger("payload.status")
+      // const category =await form.trigger("payload.category")
+      if(title){
         form.setValue("form_state.active_count",form.getValues("form_state.active_count")+1)
-        form.setValue("form_state.steps_info",
-        form.getValues("form_state.steps_info").map((e)=>{
-        if(e.label==label){
-            return {...e,completed:true}
-        }
-        return e
-        }))
       }
 
     }
 
   return (
     <section className="flex flex-col gap-6 w-full  justify-center px-4">
+      <div>
+      <h1 className="text-2xl font-bold ">
+      Tell us about this product
+      </h1>
+      <p>
+      We’ll need its name, headline, links, topics, and description.
+      </p>
+      </div>
        <FormField
           control={form.control}
           name="payload.name"
-          rules={{required:"Title is required",minLength:{value:2,message:"minimun 2 character is required"}}}
+          rules={{required:"Title is required",minLength:{value:2,message:"minimun 2 character is required",},
+          maxLength:{value:40,message:"Keep it short as it should cover in 40 characters"}}}
           render={({ field }) => (
             <FormItem className="w-full ">
-              <FormLabel className="font-semibold">Title *</FormLabel>
+              <FormLabel className="font-semibold flex gap-2 items-center justify-between w-1/2">
+                Name of the product *
+            <p className="text-muted-foreground text-sm">{field.value.length}/40</p>
+                </FormLabel>
               <FormControl>
-                <Input  placeholder="Give your project a good name" className="border w-1/2 bg-white" {...field} />
+                <Input maxLength={40}  placeholder="Give your project a good name" className="border w-1/2 bg-white" {...field} />
             </FormControl>
               <FormDescription>
                 This is the public title of your project .
@@ -57,43 +61,52 @@ export default function NewProjectFormOverviewStep({label}:{label:string}) {
 
         />
 
-         <FormField
+<FormField
+       control={form.control}
+       rules={{maxLength:{value:60,message:"Keep it short as it should cover in 40 characters"},max:{value:40,message:"Keep it short as it should cover in 40 characters"}}}
+       name="payload.headline"
+       render={({ field }) => (
+         <FormItem className="w-full ">
+           <FormLabel className="font-semibold flex gap-2 items-center justify-between w-1/2">
+            Headline
+            <p className="text-muted-foreground text-sm">{field.value.length}/60</p>
+           </FormLabel>
+           
+           <FormControl>
+             <Input max={60} maxLength={60} placeholder="Concise and descriptive headline for the product" className="border w-1/2  bg-white " {...field} />
+           </FormControl>
+           <FormMessage />
+         </FormItem>
+       
+     )}
+     />
+
+     
+
+      <div className="border-t pt-2">
+      <h1 className="text-2xl font-bold ">
+      Links
+      </h1>
+      </div>
+      <FormField
           control={form.control}
-          name="payload.status"
-          rules={{required:"Status is required",}}
+          name="payload.project_link"
+          rules={{required:"Product link is required"}}
           render={({ field }) => (
             <FormItem className="w-full  ">
-              <FormLabel className="font-semibold">Project Status *</FormLabel>
+              <FormLabel className="font-semibold">Link to the Product *</FormLabel>
               <FormControl>
-                <CustomSelect className="w-1/2 bg-white" data={project_statuses.map(e=>({label:e.label,value:e.value}))} {...field} />
+                <Input defaultValue={"https://"} className="border w-1/2 bg-white" {...field} />
               </FormControl>
               <FormDescription>
-                {project_statuses.find(e=>e.value== field.value)?.description}
+                This is the public link of the product
               </FormDescription>
               <FormMessage />
             </FormItem>
           
         )}
         />
-    
-    <FormField
-       control={form.control}
-       name="payload.problemSolution"
-       render={({ field }) => (
-         <FormItem className="w-full ">
-           <FormLabel className="font-semibold">What inspired you to start this project? </FormLabel>
-           <FormControl>
-             <Input placeholder="I want to connect the people of the whole world (facebook)" className="border w-1/2 font-semibold bg-white " {...field} />
-           </FormControl>
-           {field.value&& <i>&quot;<b className="py-2 text-sm text-black">{field.value}</b> &quot;</i>}
-           <FormDescription>
-             This question helps identify the reason or inspiration behind starting the project.
-           </FormDescription>
-           <FormMessage />
-         </FormItem>
-       
-     )}
-     />
+
      <NewProjectCategorySelect/>
         <div className="border-t py-4 flex justify-end">
         <Button className="w-max font-semibold gap-2" type="button" onClick={handleNext}>
